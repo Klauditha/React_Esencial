@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import Button from '@material-ui/core/Button';
 
 
 export class Flag extends Component {
@@ -17,6 +18,9 @@ export class Ingredient extends Component {
       <Fragment>
         <h4>Ingredientes</h4>
         <h4>Ingredientes2</h4>
+        <Button variant="contained" >
+        Primary
+      </Button>
       </Fragment>
     );
 
@@ -25,10 +29,19 @@ export class Ingredient extends Component {
 }
 
 class Dish extends Component {
+  ingredients = ["Tortilla","Carne","Cebolla"];
+  countIngredientes(){
+    return this.ingredients.length;
+  }
   render() {
     return (
-      <div>
-        <h1>Platillos</h1>
+      <div className="dish">
+        <h1>{this.props.name} {this.props.qty}</h1>
+        <h3>{this.countIngredientes()}</h3>
+        <ul>
+        {this.ingredients.map(ingredient => (
+            <li>{ingredient}</li>
+        ))}</ul>
         <Ingredient />
       </div>
     );
