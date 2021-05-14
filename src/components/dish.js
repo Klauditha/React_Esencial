@@ -1,48 +1,45 @@
-import React, { Component, Fragment } from 'react';
-import Button from '@material-ui/core/Button';
-
+import React, { Component, Fragment } from "react";
+import Button from "@material-ui/core/Button";
 
 export class Flag extends Component {
   render() {
     return (
-      <Fragment>
+      <div>
         <h1>Bandera</h1>
-        {/* <h1>Bandera2</h1> */}
-      </Fragment>
+      </div>
     );
   }
 }
+
 export class Ingredient extends Component {
   render() {
     return (
       <Fragment>
         <h4>Ingredientes</h4>
-        <h4>Ingredientes2</h4>
-        <Button variant="contained" >
-        Primary
-      </Button>
+        <h4>Ingredientes</h4>
       </Fragment>
     );
-
-    //return React.createElement('h4',{}, "Ingredientes")
   }
 }
 
 class Dish extends Component {
-  ingredients = ["Tortilla","Carne","Cebolla"];
-  countIngredientes(){
+  ingredients = ["Tortilla", "Carne", "Cebolla"];
+
+  countIngredients() {
     return this.ingredients.length;
   }
+
   render() {
     return (
       <div className="dish">
-        <h1>{this.props.name} {this.props.qty}</h1>
-        <h3>{this.countIngredientes()}</h3>
+        <h1>{this.props.name}</h1>
+        <h3>{this.countIngredients()}</h3>
         <ul>
-        {this.ingredients.map(ingredient => (
-            <li>{ingredient}</li>
-        ))}</ul>
-        <Ingredient />
+          {this.ingredients.map((ingredient, index )=> (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
+        <Button variant="contained">Elegir</Button>
       </div>
     );
   }

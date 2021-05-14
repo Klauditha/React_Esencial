@@ -2,8 +2,9 @@ import './styles/App.css';
 
 import Header from './components/header';
 import Dish, * as D from './components/dish';
+import NewDish from './components/newDish';
 import { Component } from 'react';
-import { render } from '@testing-library/react';
+
 
 class App extends Component{
   dish = "tacos";
@@ -12,6 +13,7 @@ class App extends Component{
   return (
     <div className="App">
      <Header/>
+     <NewDish />
 					<Dish name={this.dish} qty="3"/>
           yo como {this.dish}
           <ul>
