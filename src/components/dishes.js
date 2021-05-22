@@ -10,18 +10,22 @@ GridList }
 from '@material-ui/core/';
 import Restaurant from '@material-ui/icons/Restaurant';
 
-import data from '../assets/data/dishes.json';
+//import data from '../assets/data/dishes.json';
 class Dishes extends Component {
     goBack = e => {
         e.preventDefault();
         this.props.history.push('/');
       };
+
+      updateDish = (index, updateName) => {
+          this.props.onUpdateDish(index, updateName);
+      }
     render() {
         return (
             <div>
-                <h1>Platillos</h1>
+  {/*               <h1>Platillos</h1>
                 <Button variant="contained"
-     color="secondary" onClick={this.goBack}>Regresar</Button>
+     color="secondary" onClick={this.goBack}>Regresar</Button> */}
    {/*   {data.dishes.map(dish =>(
          <div>
              <div>{dish.name}</div>
@@ -45,8 +49,9 @@ class Dishes extends Component {
             </List> */}
             <GridList>
             {
-                data.dishes.map((dish,index)=>(
-                    <Dish key={index} name={dish.name} ingredients={dish.ingredients}>
+                this.props.data.dishes.map((dish,index)=>(
+                    <Dish key={index} name={dish.name} ingredients={dish.ingredients}
+                    index={index} onUpdateDish={this.updateDish}>
 
                     </Dish>
                 ))

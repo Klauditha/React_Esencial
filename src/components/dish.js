@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { Card, CardContent, List, ListItem,
-ListSubheader, ListItemIcon, ListItemText}  from "@material-ui/core";
+ListSubheader, ListItemIcon, ListItemText,
+TextField, IconButton}  from "@material-ui/core";
 import ScatterPlot from '@material-ui/icons/ScatterPlot';
+import Edit  from '@material-ui/icons/Edit';
 
 export class Flag extends Component {
   render() {
@@ -25,21 +27,48 @@ export class Ingredient extends Component {
 }
 
 class Dish extends Component {
-  ingredients = ["Tortilla", "Carne", "Cebolla"];
+  state = {
+    edit: false,
+    name:this.props.name
+  };
 
-  countIngredients() {
+  edit = e => {
+    this.setState({edit:!this.state.edit})
+  };
+  handleChange = e => {
+    let newState = {...this.state};
+    newState.name = e.currentTarget.value;
+    this.setState(newState);
+    this.props.onUpdateDish(this.props.index, newState.name);
+  };
+  //ingredients = ["Tortilla", "Carne", "Cebolla"];
+
+/*   countIngredients() {
     return this.ingredients.length;
   }
-
+ */
   render() {
     return (
-    /* const {params} = this.props.match; */
-      <Card className="card">
+       <Card className="card">
         <CardContent>
           <List
             component="nav"
             subheader={
-              <ListSubheader component="div">{this.props.name}</ListSubheader>
+              <ListSubheader component="div">
+                {this.state.edit?(
+                  <TextField label="Platillo..."
+                      type="text"
+                      margin="normal"
+                      variant="outlined"
+                      value={this.state.name}
+                      onChange={this.handleChange}
+                      />
+                ):( this.props.name
+                )}
+                <IconButton size="small" onClick={this.edit}>
+                  <Edit/>
+                </IconButton>
+                </ListSubheader>
             }
           >
             {this.props.ingredients.map((ingredient, index) => (
