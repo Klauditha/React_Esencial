@@ -41,6 +41,10 @@ class Dish extends Component {
     this.setState(newState);
     this.props.onUpdateDish(this.props.index, newState.name);
   };
+
+  componentDidUpdate(){
+    console.log('Componente actualizado');
+  }
   //ingredients = ["Tortilla", "Carne", "Cebolla"];
 
 /*   countIngredients() {
